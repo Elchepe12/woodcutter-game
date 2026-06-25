@@ -1,7 +1,7 @@
 # Shop.gd — adjunta al Area3D de la tienda
 extends Area3D
 
-@onready var sign: Label3D = $Label3D
+@onready var shop_sign: Label3D = $Label3D
 
 var player_inside: bool = false
 var shop_ui = null
@@ -9,7 +9,7 @@ var shop_ui = null
 func _ready():
 	body_entered.connect(_on_body_entered)
 	body_exited.connect(_on_body_exited)
-	sign.text = "TIENDA\n[E] Entrar"
+	shop_sign.text = "TIENDA\n[E] Entrar"
 	_build_structure()
 
 func _build_structure() -> void:

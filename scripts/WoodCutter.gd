@@ -32,9 +32,9 @@ func _handle_cutting(delta):
 		if target.has_method("get_required_axe_level") and ProgressSystem.axe_level < target.get_required_axe_level():
 			if _blocked_target != target:
 				_blocked_target = target
-				var hud = get_tree().get_first_node_in_group("hud")
-				if hud:
-					hud.queue_notification("%s requiere mejor hacha!" % target.get_wood_name())
+				var hud_blocked = get_tree().get_first_node_in_group("hud")
+				if hud_blocked:
+					hud_blocked.queue_notification("%s requiere mejor hacha!" % target.get_wood_name())
 			_reset_cutting()
 			return
 		_blocked_target = null
@@ -45,9 +45,9 @@ func _handle_cutting(delta):
 			if cut_target.has_method("on_cut_start"):
 				cut_target.on_cut_start()
 			if cut_target.get("is_giant"):
-				var hud := get_tree().get_first_node_in_group("hud")
-				if hud:
-					hud.queue_notification("ARBOL GIGANTE! Mas troncos...")
+				var hud_giant := get_tree().get_first_node_in_group("hud")
+				if hud_giant:
+					hud_giant.queue_notification("ARBOL GIGANTE! Mas troncos...")
 
 		is_cutting = true
 		if _swing_cooldown > 0.0:
