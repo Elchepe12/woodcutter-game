@@ -3,7 +3,7 @@ extends Node3D
 const CHAR_BASE = "res://assets/characters/kenney_mini_characters/Models/GLB format/"
 
 const MALE_MODELS   = ["character-male-a.glb","character-male-b.glb","character-male-c.glb",
-					    "character-male-d.glb","character-male-e.glb","character-male-f.glb"]
+						"character-male-d.glb","character-male-e.glb","character-male-f.glb"]
 const FEMALE_MODELS = ["character-female-a.glb","character-female-b.glb","character-female-c.glb"]
 
 const NPC_DATA = [
@@ -41,7 +41,6 @@ func _create_npc(data: Dictionary):
 	label.billboard = BaseMaterial3D.BILLBOARD_ENABLED
 	label.modulate = Color(1.0, 0.92, 0.6)
 	label.outline_modulate = Color(0, 0, 0, 1)
-	label.outline_render_mode = Label3D.OUTLINE_RENDER_MODE_GLYPH
 	root.add_child(label)
 
 	if data["wander"]:
