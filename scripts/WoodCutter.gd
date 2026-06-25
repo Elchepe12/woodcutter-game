@@ -68,8 +68,8 @@ func _handle_cutting(delta):
 
 		var hud = get_tree().get_first_node_in_group("hud")
 		if hud:
-			var wname := target.get_wood_name() if target.has_method("get_wood_name") else ""
-			var giant_tag := " [GIGANTE]" if target.get("is_giant") else ""
+			var wname: String = target.get_wood_name() if target.has_method("get_wood_name") else ""
+			var giant_tag: String = " [GIGANTE]" if target.get("is_giant") else ""
 			hud.update_cutting_bar(cut_progress, target.max_health, true, wname + giant_tag)
 	else:
 		_reset_cutting()
