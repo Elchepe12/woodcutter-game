@@ -3,7 +3,7 @@ extends Area3D
 const RAW_WOOD_TYPES := [0, 1, 2, 3]
 const PROCESS_TIME   := 2.5
 
-@onready var sign: Label3D = $Label3D
+@onready var sawmill_sign: Label3D = $Label3D
 
 var player_inside     := false
 var processing        := false
@@ -15,7 +15,7 @@ var _blade_node: MeshInstance3D = null
 func _ready() -> void:
 	body_entered.connect(_on_body_entered)
 	body_exited.connect(_on_body_exited)
-	sign.text = "ASERRADERO\n[E] Procesar madera"
+	sawmill_sign.text = "ASERRADERO\n[E] Procesar madera"
 	_build_visuals()
 
 func _build_visuals() -> void:
@@ -60,7 +60,7 @@ func _process(delta: float) -> void:
 		_blade_node.rotation_degrees.z = _blade_spin
 		_process_elapsed += delta
 		var remaining := maxf(0.0, PROCESS_TIME - _process_elapsed)
-		sign.text = "ASERRADERO\nProcesando %.1fs..." % remaining
+		sawmill_sign.text = "ASERRADERO\nProcesando %.1fs..." % remaining
 		if _process_elapsed >= PROCESS_TIME:
 			_finish_processing()
 		return
@@ -99,7 +99,7 @@ func _finish_processing() -> void:
 	Tutorial.record_processed()
 	StatsTracker.record_planks(converted)
 	processing = false
-	sign.text = "ASERRADERO\n[E] Procesar madera"
+	sawmill_sign.text = "ASERRADERO\n[E] Procesar madera"
 	_show_message("%d troncos -> tablones (+50%% valor)!" % converted)
 
 func _show_message(message: String) -> void:

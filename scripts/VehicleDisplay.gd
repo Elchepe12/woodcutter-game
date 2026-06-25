@@ -1,6 +1,6 @@
 extends Node3D
 
-@onready var sign: Label3D = $Label3D
+@onready var vehicle_sign: Label3D = $Label3D
 
 var _wood_material: StandardMaterial3D
 var _metal_material: StandardMaterial3D
@@ -23,7 +23,7 @@ func _rebuild() -> void:
 			child.queue_free()
 	var level := ProgressSystem.vehicle_level
 	var vehicle_name: String = ProgressSystem.VEHICLE_LEVELS[level]["name"]
-	sign.text = "GARAJE\n%s" % vehicle_name
+	vehicle_sign.text = "GARAJE\n%s" % vehicle_name
 	if level == 0:
 		return
 	if level == 1:

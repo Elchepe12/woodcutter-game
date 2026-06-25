@@ -22,7 +22,6 @@ var world_env: WorldEnvironment = null
 var _last_rush_active: bool = false
 var _day_count: int = 1
 
-signal hour_changed(hour: int)
 signal rush_hour_changed(active: bool, multiplier: float, label: String)
 signal new_day(day_number: int)
 

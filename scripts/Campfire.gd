@@ -26,14 +26,14 @@ func _build_visual() -> void:
 	log_mat.albedo_color = Color(0.25, 0.12, 0.05)
 	for i in 3:
 		var angle := TAU * float(i) / 3.0
-		var log := MeshInstance3D.new()
+		var log_mesh := MeshInstance3D.new()
 		var cm  := CylinderMesh.new()
 		cm.top_radius = 0.06; cm.bottom_radius = 0.06; cm.height = 1.0
-		log.mesh = cm
-		log.material_override = log_mat
-		log.position = Vector3(0, 0.06, 0)
-		log.rotation = Vector3(deg_to_rad(80), angle, 0)
-		add_child(log)
+		log_mesh.mesh = cm
+		log_mesh.material_override = log_mat
+		log_mesh.position = Vector3(0, 0.06, 0)
+		log_mesh.rotation = Vector3(deg_to_rad(80), angle, 0)
+		add_child(log_mesh)
 
 	# Embers glow
 	var embers := MeshInstance3D.new()

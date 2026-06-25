@@ -28,9 +28,9 @@ extends CanvasLayer
 
 const WOOD_NAMES  = { 0: "Pino", 1: "Abedul", 2: "Roble", 3: "Secuoya" }
 const ITEM_NAMES  = { "plank_0": "Tab.Pino", "plank_1": "Tab.Abedul",
-                      "plank_2": "Tab.Roble", "plank_3": "Tab.Secuoya" }
+					  "plank_2": "Tab.Roble", "plank_3": "Tab.Secuoya" }
 const WOOD_PRICES = { 0: 6, 1: 8, 2: 10, 3: 25,
-                      "plank_0": 9, "plank_1": 12, "plank_2": 15, "plank_3": 38 }
+					  "plank_0": 9, "plank_1": 12, "plank_2": 15, "plank_3": 38 }
 
 var _notif_queue: Array[String] = []
 var _notif_busy := false
@@ -173,9 +173,9 @@ func update_cutting_bar(progress: float, max_health: float, cutting: bool, wood_
 		cutting_label.text = wood_name if wood_name != "" else ""
 
 # ── SELL PROMPT ───────────────────────────────────────────────────────────────
-func show_sell_prompt(show: bool, amount: int):
-	sell_prompt.visible = show
-	if show:
+func show_sell_prompt(visible_flag: bool, amount: int):
+	sell_prompt.visible = visible_flag
+	if visible_flag:
 		sell_prompt_label.text = "[F] Vender — $%d" % amount
 
 # ── NOTIFICATION QUEUE ────────────────────────────────────────────────────────
@@ -214,7 +214,7 @@ func update_time(hour: int, minute: int):
 func update_weather(weather_text: String):
 	weather_label.text = weather_text
 
-func update_rush_hour(active: bool, mult: float, label_text: String):
+func update_rush_hour(active: bool, _mult: float, label_text: String):
 	rush_hour_label.visible = active
 	if active:
 		rush_hour_label.text = "⚡ %s" % label_text

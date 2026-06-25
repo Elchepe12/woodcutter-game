@@ -104,8 +104,8 @@ func _place_log_stacks():
 	for i in 4:
 		var angle = TAU * float(i) / 4.0 + randf_range(-0.3, 0.3)
 		var pos = sawmill + Vector3(cos(angle) * randf_range(3, 5), 0, sin(angle) * randf_range(3, 5))
-		var log = LOGS[randi() % LOGS.size()]
-		_place(log, pos, randf_range(0, TAU), randf_range(0.9, 1.1))
+		var log_model = LOGS[randi() % LOGS.size()]
+		_place(log_model, pos, randf_range(0, TAU), randf_range(0.9, 1.1))
 	# A few stumps near sawmill too
 	for _i in 3:
 		var pos = sawmill + Vector3(randf_range(-6, 6), 0, randf_range(-6, 6))
