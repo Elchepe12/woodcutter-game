@@ -1,0 +1,146 @@
+[gd_scene load_steps=16 format=3]
+
+[ext_resource type="Script" path="res://scripts/GameManager.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/WorldTerrain.gd" id="2"]
+[ext_resource type="Script" path="res://scripts/ZoneManager.gd" id="3"]
+[ext_resource type="Script" path="res://scripts/PathNetwork.gd" id="4"]
+[ext_resource type="Script" path="res://scripts/SellZone.gd" id="5"]
+[ext_resource type="Script" path="res://scripts/Shop.gd" id="6"]
+[ext_resource type="Script" path="res://scripts/DayNightCycle.gd" id="7"]
+[ext_resource type="PackedScene" path="res://scenes/HUD.tscn" id="8"]
+[ext_resource type="Script" path="res://scripts/Sawmill.gd" id="9"]
+[ext_resource type="Script" path="res://scripts/VehicleDisplay.gd" id="10"]
+[ext_resource type="Script" path="res://scripts/MarketBoard.gd" id="11"]
+[ext_resource type="Script" path="res://scripts/AmbientAudio.gd" id="12"]
+[ext_resource type="Script" path="res://scripts/Campfire.gd" id="13"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1"]
+sky_top_color = Color(0.08, 0.22, 0.45, 1)
+sky_horizon_color = Color(0.52, 0.75, 0.95, 1)
+ground_bottom_color = Color(0.06, 0.09, 0.05, 1)
+ground_horizon_color = Color(0.28, 0.36, 0.22, 1)
+
+[sub_resource type="Sky" id="Sky_1"]
+sky_material = SubResource("ProceduralSkyMaterial_1")
+
+[sub_resource type="Environment" id="Environment_1"]
+background_mode = 2
+sky = SubResource("Sky_1")
+background_energy_multiplier = 0.7
+ambient_light_source = 2
+ambient_light_color = Color(0.58, 0.72, 0.82, 1)
+ambient_light_energy = 0.5
+fog_enabled = true
+fog_light_color = Color(0.62, 0.72, 0.72, 1)
+fog_light_energy = 0.6
+fog_density = 0.004
+fog_sky_affect = 0.7
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_1"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1"]
+size = Vector3(6, 2, 6)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2"]
+size = Vector3(4, 2, 4)
+
+[node name="Main" type="Node3D"]
+script = ExtResource("1")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_1")
+groups = ["world_environment"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.766, 0.643, 0, -0.643, 0.766, 0, 10, 0)
+light_energy = 1.2
+shadow_enabled = true
+script = ExtResource("7")
+
+[node name="Ground" type="StaticBody3D" parent="."]
+
+[node name="GroundCollision" type="CollisionShape3D" parent="Ground"]
+shape = SubResource("WorldBoundaryShape3D_1")
+
+[node name="Terrain" type="MeshInstance3D" parent="."]
+script = ExtResource("2")
+
+[node name="ZoneManager" type="Node3D" parent="."]
+script = ExtResource("3")
+
+[node name="PathNetwork" type="Node3D" parent="."]
+script = ExtResource("4")
+
+[node name="SellZone" type="Area3D" parent="."]
+position = Vector3(0, 0, 0)
+script = ExtResource("5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SellZone"]
+shape = SubResource("BoxShape3D_1")
+
+[node name="Label3D" type="Label3D" parent="SellZone"]
+position = Vector3(0, 2, 0)
+text = "ZONA DE VENTA"
+font_size = 24
+
+[node name="Shop" type="Area3D" parent="."]
+position = Vector3(8, 0, 0)
+script = ExtResource("6")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Shop"]
+shape = SubResource("BoxShape3D_2")
+
+[node name="Label3D" type="Label3D" parent="Shop"]
+position = Vector3(0, 2, 0)
+text = "TIENDA [E]"
+font_size = 24
+
+[node name="Sawmill" type="Area3D" parent="."]
+position = Vector3(-8, 0, 0)
+script = ExtResource("9")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Sawmill"]
+shape = SubResource("BoxShape3D_2")
+
+[node name="Label3D" type="Label3D" parent="Sawmill"]
+position = Vector3(0, 2, 0)
+text = "ASERRADERO [E]"
+font_size = 24
+
+[node name="Garage" type="Node3D" parent="."]
+position = Vector3(14, 0, 8)
+script = ExtResource("10")
+
+[node name="Label3D" type="Label3D" parent="Garage"]
+position = Vector3(0, 2.2, 0)
+font_size = 22
+billboard = 1
+
+[node name="MarketBoard" type="Node3D" parent="."]
+position = Vector3(4, 0, -5)
+script = ExtResource("11")
+
+[node name="BoardLabel" type="Label3D" parent="MarketBoard"]
+position = Vector3(0, 2.5, 0.1)
+pixel_size = 0.004
+font_size = 20
+outline_size = 4
+modulate = Color(0.15, 0.08, 0.02, 1)
+billboard = 0
+
+[node name="Players" type="Node3D" parent="."]
+
+[node name="AmbientAudio" type="Node" parent="."]
+script = ExtResource("12")
+
+[node name="Campfire" type="Node3D" parent="."]
+position = Vector3(3, 0, 9)
+script = ExtResource("13")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Campfire"]
+position = Vector3(0, 0.5, 0)
+light_color = Color(1.0, 0.55, 0.1, 1)
+light_energy = 2.5
+omni_range = 8.0
+
+[node name="HUD" parent="." instance=ExtResource("8")]

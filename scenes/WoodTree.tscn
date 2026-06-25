@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://b8vyb4xm8xk6b"]
+
+[ext_resource type="Script" uid="uid://dt6kjbjipqdq" path="res://scripts/Wood.gd" id="1"]
+[ext_resource type="Script" uid="uid://b5qia2u8if4hs" path="res://scripts/CutEffect.gd" id="2"]
+
+[node name="WoodTree" type="StaticBody3D" unique_id=1553158654]
+script = ExtResource("1")
+
+[node name="CutEffect" type="Node" parent="." unique_id=1884503597]
+script = ExtResource("2")
+
+[node name="ChipParticles" type="GPUParticles3D" parent="CutEffect" unique_id=343332573]
+
+[node name="FallParticles" type="GPUParticles3D" parent="CutEffect" unique_id=1459074133]
+
+[node name="CutSound" type="AudioStreamPlayer3D" parent="CutEffect" unique_id=1240253193]
+
+[node name="FallSound" type="AudioStreamPlayer3D" parent="CutEffect" unique_id=428998191]

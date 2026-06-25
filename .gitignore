@@ -1,0 +1,10 @@
+# Godot editor files (generated, no need to share)
+.godot/
+
+# Export builds
+builds/
+export/
+
+# OS
+Thumbs.db
+.DS_Store
