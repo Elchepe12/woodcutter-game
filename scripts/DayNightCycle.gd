@@ -103,12 +103,12 @@ func _update_hud():
 
 func _check_rush_hour():
 	var h := get_hour()
-	var rush := _get_rush_hour_data(h)
+	var rush = _get_rush_hour_data(h)
 	var active := rush != null
 	if active != _last_rush_active:
 		_last_rush_active = active
-		var mult := rush.mult if rush else 1.0
-		var lbl  := rush.label if rush else ""
+		var mult: float = rush.mult if rush else 1.0
+		var lbl: String = rush.label if rush else ""
 		rush_hour_changed.emit(active, mult, lbl)
 		var hud = get_tree().get_first_node_in_group("hud")
 		if hud and hud.has_method("update_rush_hour"):
