@@ -19,7 +19,7 @@ func _on_upgrade_purchased(upgrade_type: String, _level: int) -> void:
 
 func _rebuild() -> void:
 	for child in get_children():
-		if child != sign:
+		if child != vehicle_sign:
 			child.queue_free()
 	var level := ProgressSystem.vehicle_level
 	var vehicle_name: String = ProgressSystem.VEHICLE_LEVELS[level]["name"]
