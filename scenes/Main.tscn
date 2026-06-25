@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3]
+[gd_scene load_steps=18 format=3]
 
 [ext_resource type="Script" path="res://scripts/GameManager.gd" id="1"]
 [ext_resource type="Script" path="res://scripts/WorldTerrain.gd" id="2"]
@@ -13,6 +13,8 @@
 [ext_resource type="Script" path="res://scripts/MarketBoard.gd" id="11"]
 [ext_resource type="Script" path="res://scripts/AmbientAudio.gd" id="12"]
 [ext_resource type="Script" path="res://scripts/Campfire.gd" id="13"]
+[ext_resource type="Script" path="res://scripts/EnvironmentProps.gd" id="14"]
+[ext_resource type="Script" path="res://scripts/NpcSpawner.gd" id="15"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1"]
 sky_top_color = Color(0.08, 0.22, 0.45, 1)
@@ -142,5 +144,11 @@ position = Vector3(0, 0.5, 0)
 light_color = Color(1.0, 0.55, 0.1, 1)
 light_energy = 2.5
 omni_range = 8.0
+
+[node name="EnvironmentProps" type="Node3D" parent="."]
+script = ExtResource("14")
+
+[node name="NpcSpawner" type="Node3D" parent="."]
+script = ExtResource("15")
 
 [node name="HUD" parent="." instance=ExtResource("8")]
